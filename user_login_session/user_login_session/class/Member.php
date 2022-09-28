@@ -57,13 +57,13 @@ class Member
                 "message" => "Email already exists."
             );
         } else {
-            if (! empty($_POST["signup-password"])) {
+            if (! empty($_POST["password"])) {
 
                 // PHP's password_hash is the best choice to use to store passwords
                 // do not attempt to do your own encryption, it is not safe
-                $hashedPassword = md5($_POST["signup-password"]);
+                $hashedPassword = md5($_POST["password"]);
             }
-            $query = 'INSERT INTO users (Firstname, Lastname, Email, Password, Phone_No, Role_As ) VALUES (?, ?, ?, ?, ?, ?)';
+            $query = "INSERT INTO users (Firstname, Lastname, Email, Password, Phone_No, Role_As ) VALUES (?, ?, ?, ?, ?, ?)";
             $paramType = 'sssssi';
             $paramValue = array(
                 $_POST["firstname"],

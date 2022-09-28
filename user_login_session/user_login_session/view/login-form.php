@@ -2,8 +2,8 @@
 <head>
 <title>User Login</title>
 <link href="./view/css/style.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href=".\assets\css\bootstrap5.min.css">
-<link rel="stylesheet" href=".\assets\css\custom.css">
+<link rel="stylesheet" href="./view/assets/css/bootstrap5.min.css">
+<link rel="stylesheet" href="./view/assets/css/custom.css">
 </head>
 <body>
     <div class="py-5">
@@ -16,7 +16,7 @@
                         </div>
                         <!-- action="login-action.php" -->
                         <div class="card-body">
-                        <form action="" method="post" id="frmLogin" onSubmit="return validate();">
+                        <form action="login-action.php" method="post" id="frmLogin" onSubmit="return validate();">
                             <div class="demo-table">
                                 <?php 
                                 if(isset($_SESSION["errorMessage"])) {
@@ -44,7 +44,7 @@
                                 </div>
                                 <div class=field-column>
                                     <div class="form-group mb-3 text-center m-4">
-                                        <input type="submit" name="login" value="Login"
+                                        <input type="submit" name="login" value="login"
                                         class="btn btn-primary"></span>
                                     </div>
                                 </div>

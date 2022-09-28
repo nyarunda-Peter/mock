@@ -32,16 +32,22 @@ input {
     color: white;
   }
   
+
+  #firstname{
+    background-color:red;
+  }
   /* Style the container for inputs */
   .container {
     background-color: #f1f1f1;
     padding: 20px;
   }
+
+
   
   /* The message box is shown when the user clicks on the password field */
   #message {
     display:none;
-    background: #f1f1f1;
+    background: #dcc5c5;
     color: #000;
     position: relative;
     padding: 20px;
