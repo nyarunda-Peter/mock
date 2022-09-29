@@ -3,7 +3,7 @@
 <title>User Login</title>
 <link href="./view/css/style.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="./view/assets/css/bootstrap5.min.css">
-<link rel="stylesheet" href="./view/assets/css/custom.css">
+<link rel="stylesheet" href="./css/custom.css">
 </head>
 <body>
     <div class="py-5">
@@ -48,6 +48,7 @@
                                         class="btn btn-primary"></span>
                                     </div>
                                 </div>
+                                <a href="./view/registration-form.php">Register</a>
                             </div>
                         </form>
                         </div>

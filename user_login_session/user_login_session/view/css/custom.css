@@ -33,9 +33,7 @@ input {
   }
   
 
-  #firstname{
-    background-color:red;
-  }
+
   /* Style the container for inputs */
   .container {
     background-color: #f1f1f1;
@@ -58,7 +56,7 @@ input {
     padding: 10px 35px;
     font-size: 18px;
   }
-  
+
   #email {
     background-color: red;
   }
@@ -71,7 +69,7 @@ input {
   .valid:before {
     position: relative;
     left: -35px;
-    content: "&#10004;";
+    
   }
   
   /* Add a red text color and an "x" icon when the requirements are wrong */
@@ -82,23 +80,43 @@ input {
   .invalid:before {
     position: relative;
     left: -35px;
-    content: "&#10006;";
+    
   }
 
-  #id_work_days input[type="checkbox"] {
+  #internal_features input[type="checkbox"] {
     display: none;
   }
   
-  #id_work_days span {
+  #internal_features span {
     display: inline-block;
     padding: 10px;
+    margin: 2px;
     text-transform: uppercase;
-    border: 2px solid gold;
+    border: 2px solid black;
     border-radius: 3px;
-    color: gold;
+    color: black
   }
   
-  #id_work_days input[type="checkbox"]:checked + span {
-    background-color: gold;
+  #internal_features input[type="checkbox"]:checked + span {
+    background-color: rgb(49, 102, 49);
+    color: black;
+  }
+
+  #external_features input[type="checkbox"] {
+    display: none;
+  }
+  
+  #external_features span {
+    display: inline-block;
+    padding: 10px;
+    margin: 2px;
+    text-transform: uppercase;
+    border: 2px solid black;
+    border-radius: 3px;
+    color: black
+  }
+  
+  #external_features input[type="checkbox"]:checked + span {
+    background-color: rgb(49, 102, 49);
     color: black;
   }

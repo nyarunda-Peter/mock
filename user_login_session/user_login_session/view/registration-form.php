@@ -11,9 +11,9 @@ if (!empty($_POST["register_btn"])){
 <html>
 <head>
 <title>User Login</title>
-<link href="./view/css/style.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="./view/assets/css/bootstrap5.min.css">
-<link rel="stylesheet" href="./view/assets/css/custom.css">
+<link href="./css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="./assets/css/bootstrap5.min.css">
+<link rel="stylesheet" href="./css/custom.css">
 
 </head>
 <body>
@@ -87,7 +87,7 @@ if (!empty($_POST["register_btn"])){
                                     <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
                                     <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
                                     <p id="number" class="invalid">A <b>number</b></p>
-                                    <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                                    <p id="length" class="invalid">Minimum <b>6 characters</b></p>
                                 </div>
                                 
                                 <!-- Role As Field -->
@@ -165,7 +165,7 @@ if (!empty($_POST["register_btn"])){
         }
         
         // Validate length
-        if(myInput.value.length >= 8) {
+        if(myInput.value.length >= 6) {
             length.classList.remove("invalid");
             length.classList.add("valid");
         } else {

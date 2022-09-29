@@ -25,6 +25,9 @@ if (! empty($_SESSION["userId"])) {
             <div class="member-dashboard">Welcome <b><?php echo $displayName; ?></b>, You have successfully logged in!<br>
                 Click to <a href="./logout.php" class="logout-button">Logout</a>
             </div>
+            <div>
+                <a href="">Property Form</a>
+            </div>
         </div>
     </div>
 </body>
