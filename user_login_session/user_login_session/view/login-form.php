@@ -9,7 +9,7 @@
     <div class="py-5">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <div class="card"> 
                         <div class="card-header text-center">
                             <h4>Login</h4>
@@ -17,7 +17,7 @@
                         <!-- action="login-action.php" -->
                         <div class="card-body">
                         <form action="login-action.php" method="post" id="frmLogin" onSubmit="return validate();">
-                            <div class="demo-table">
+                            
                                 <?php 
                                 if(isset($_SESSION["errorMessage"])) {
                                 ?>
@@ -49,7 +49,7 @@
                                     </div>
                                 </div>
                                 <a href="./view/registration-form.php">Register</a>
-                            </div>
+                            
                         </form>
                         </div>
                     </div>

@@ -26,7 +26,7 @@ if (! empty($_SESSION["userId"])) {
                 Click to <a href="./logout.php" class="logout-button">Logout</a>
             </div>
             <div>
-                <a href="">Property Form</a>
+                <a href="./view/add-property-form.php">Property Form</a>
             </div>
         </div>
     </div>
