@@ -1,0 +1,122 @@
+.navbar{
+    padding: 0px;
+}
+
+.nav-link{
+    border-right: 1px solid #ffffff;
+    padding: 8px 20px !important;
+    
+}
+
+.underline{
+    height: 4px;
+    width: 150px;
+    background-color: red;
+    margin-bottom: 20px;
+}
+
+/* Style all input fields */
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+  }
+  
+  /* Style the submit button */
+  input[type=submit] {
+    background-color: #04AA6D;
+    color: white;
+  }
+  
+
+
+  /* Style the container for inputs */
+  .container {
+    background-color: #f1f1f1;
+    padding: 20px;
+  }
+
+
+  
+  /* The message box is shown when the user clicks on the password field */
+  #message {
+    display:none;
+    background: #dcc5c5;
+    color: #000;
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+  }
+  
+  #message p {
+    padding: 10px 35px;
+    font-size: 18px;
+  }
+
+  #email {
+    background-color: red;
+  }
+  
+  /* Add a green text color and a checkmark when the requirements are right */
+  .valid {
+    color: green;
+  }
+  
+  .valid:before {
+    position: relative;
+    left: -35px;
+    
+  }
+  
+  /* Add a red text color and an "x" icon when the requirements are wrong */
+  .invalid {
+    color: red;
+  }
+  
+  .invalid:before {
+    position: relative;
+    left: -35px;
+    
+  }
+
+  #internal_features input[type="checkbox"] {
+    display: none;
+  }
+  
+  #internal_features span {
+    display: inline-block;
+    padding: 10px;
+    margin: 2px;
+    text-transform: uppercase;
+    border: 2px solid black;
+    border-radius: 3px;
+    color: black
+  }
+  
+  #internal_features input[type="checkbox"]:checked + span {
+    background-color: rgb(49, 102, 49);
+    color: black;
+  }
+
+  #external_features input[type="checkbox"] {
+    display: none;
+  }
+  
+  #external_features span {
+    display: inline-block;
+    padding: 10px;
+    margin: 2px;
+    text-transform: uppercase;
+    border: 2px solid black;
+    border-radius: 3px;
+    color: black
+  }
+  
+  #external_features input[type="checkbox"]:checked + span {
+    background-color: rgb(49, 102, 49);
+    color: black;
+  }
