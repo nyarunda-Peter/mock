@@ -24,12 +24,12 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('property/{post}', function (Property $post) {
+Route::get('property/{post:slug}', function (Property $post) {
 
     //Find a view by its slug and pass it to a view called "post"
     
     return view('post' , [
-        'post' => Property::findOrFail($post)  
+        'post' => $post  
     ]);
 
 });

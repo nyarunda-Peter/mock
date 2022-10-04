@@ -11,4 +11,12 @@ class Property extends Model
 
     protected $guarded = [];
     //protected $fillable = ['title', 'excerpt', 'body'];
+
+    public function category(){
+        //hasOne, hasMany, belongTo, belongsToMany
+        return $this->belongsTo(Category::class);
+    }
+    // public function type(){
+    //     return $this->belongsTo(Type::class);
+    // }
 }
