@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Type;
+use App\Models\User;
+use App\Models\Category;
 use App\Models\Property;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
@@ -19,9 +22,17 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 Route::get('/', function () {
 
+
+    \Illuminate\Support\Facades\DB::listen(function($query){
+        logger($query->sql
+    );
+    });
+
     return view('property', [
-        'posts' => Property::all()
+        'posts' => Property::latest('created_at')->get(),
+        'categories' => Category::all()        
     ]);
+    
 });
 
 Route::get('property/{post:slug}', function (Property $post) {
@@ -32,4 +43,26 @@ Route::get('property/{post:slug}', function (Property $post) {
         'post' => $post  
     ]);
 
+});
+
+Route::get('categories/{category:slug}', function (Category $category){
+    return view('property', [
+        'posts' => $category->posts
+        
+    ]);
+});
+
+Route::get('types/{type:slug}', function (Type $type){
+    return view('property', [
+        'posts' => $type->posts
+        
+    ]);
+});
+
+Route::get('authors/{author:username}', function (User $author){
+   
+    return view('property', [
+        'posts' => $author->posts
+        
+    ]);
 });

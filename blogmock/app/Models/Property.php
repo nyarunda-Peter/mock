@@ -12,11 +12,20 @@ class Property extends Model
     protected $guarded = [];
     //protected $fillable = ['title', 'excerpt', 'body'];
 
+    //Not advisable as it might load relationships even when not needed -> make helper method or use ->without(['attributes to ignore'])
+    protected $with = ['category','type', 'author'];
+
     public function category(){
         //hasOne, hasMany, belongTo, belongsToMany
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id');
     }
-    // public function type(){
-    //     return $this->belongsTo(Type::class);
-    // }
+
+    public function type(){
+        return $this->belongsTo(Type::class, 'type_id');
+    }
+
+    public function author(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
+
