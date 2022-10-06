@@ -46,9 +46,9 @@
                     </h1>
 
                     <div class="space-y-4 lg:text-lg leading-loose">
-                        <p>{{ $post->excerpt}}</p>
+                        {!! $post->excerpt!!}
 
-                        <p>{{ $post->body}}</p>
+                        {!! $post->body!!}
 
                     </div>
                 </div>

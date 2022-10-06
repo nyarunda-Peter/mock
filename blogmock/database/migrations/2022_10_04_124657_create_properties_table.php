@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('title');
             $table->text('excerpt');
             $table->text('body');
+            $table->boolean('approved_status');
+            $table->boolean('property_status');
             $table->timestamps();
             $table->timestamp('published_at')->nullable();
         });

@@ -34,9 +34,20 @@ class DatabaseSeeder extends Seeder
             'name' => 'John Doe'
         ]);
 
+        $category = Category::factory()->create([
+            'name' => 'Sale',
+            'slug' => 'for-sale'
+        ]);
+
+        $type = Type::factory()->create([
+            'name' => 'House',
+            'slug' => 'house'
+        ]);
         //creating dummy property data
         Property::factory(5)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'type_id' => $type->id
         ]);
 
         

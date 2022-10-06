@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PropertyController;
 use App\Models\Type;
 use App\Models\User;
 use App\Models\Category;
@@ -20,49 +21,36 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', [PropertyController::class, 'index'])->name('home');
 
-
-    \Illuminate\Support\Facades\DB::listen(function($query){
-        logger($query->sql
-    );
-    });
-
-    return view('property', [
-        'posts' => Property::latest('created_at')->get(),
-        'categories' => Category::all()        
-    ]);
-    
-});
-
-Route::get('property/{post:slug}', function (Property $post) {
-
-    //Find a view by its slug and pass it to a view called "post"
-    
-    return view('post' , [
-        'post' => $post  
-    ]);
-
-});
+Route::get('property/{post:slug}',[PropertyController::class, 'showPost'] );
 
 Route::get('categories/{category:slug}', function (Category $category){
+
     return view('property', [
-        'posts' => $category->posts
+        'posts' => $category->posts,
+        'current_category' => $category,
+        'categories' => Category::all(),
+        'types' => Type::all()
         
     ]);
 });
 
 Route::get('types/{type:slug}', function (Type $type){
+
     return view('property', [
-        'posts' => $type->posts
+        'posts' => $type->posts,
+        'categories' => Category::all(),
+        'types' => Type::all() 
         
     ]);
 });
 
 Route::get('authors/{author:username}', function (User $author){
-   
+ 
     return view('property', [
-        'posts' => $author->posts
-        
+        'posts' => $author->posts,
+        'categories' => Category::all(),
+        'types' => Type::all()
     ]);
 });

@@ -9,11 +9,13 @@
     @if ($posts->count())
         <x-post-grid :posts="$posts"/>
     @else
-        <p class="center">No Posts Yet!Please Check Back Later</p>
+        <p class="center">No Posts Yet! Please Check Back Later</p>
+        <br>
+        <a href="/" > Back to Homepage </a>
     @endif
         </main>
 
-    <!-- Initial View: Temporarily Commented -->
+    {{-- <!-- Initial View: Temporarily Commented --> --}}
 
  {{-- @foreach ($posts as $post)
     <article>

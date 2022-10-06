@@ -25,8 +25,8 @@ class PropertyFactory extends Factory
             'type_id'=>Type::factory(),
             'title' => $this->faker->company,
             'slug' => $this->faker->slug,
-            'excerpt' => $this->faker->sentence,
-            'body' => $this->faker->paragraph,
+            'excerpt' => '<p>' . implode ('</p><p>', $this->faker->paragraphs(2)) . '</p>',
+            'body' => '<p>' . implode ('</p><p>', $this->faker->paragraphs(4)) . '</p>',
         ];
     }
 }
