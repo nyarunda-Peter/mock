@@ -27,30 +27,30 @@ Route::get('property/{post:slug}',[PropertyController::class, 'showPost'] );
 
 Route::get('categories/{category:slug}', function (Category $category){
 
-    return view('property', [
+    return view('property.index', [
         'posts' => $category->posts,
         'current_category' => $category,
-        'categories' => Category::all(),
         'types' => Type::all()
-        
+
     ]);
 });
 
 Route::get('types/{type:slug}', function (Type $type){
 
-    return view('property', [
+    return view('property.index', [
         'posts' => $type->posts,
-        'categories' => Category::all(),
-        'types' => Type::all() 
-        
+        'types' => Type::all()
+
     ]);
 });
 
-Route::get('authors/{author:username}', function (User $author){
- 
-    return view('property', [
-        'posts' => $author->posts,
-        'categories' => Category::all(),
-        'types' => Type::all()
-    ]);
-});
+
+//Not Needed so far
+// Route::get('authors/{author:username}', function (User $author){
+
+//     return view('property', [
+//         'posts' => $author->posts,
+//         'categories' => Category::all(),
+//         'types' => Type::all()
+//     ]);
+// });

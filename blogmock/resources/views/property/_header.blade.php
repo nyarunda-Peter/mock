@@ -2,7 +2,7 @@
 
 <header class="max-w-xl mx-auto mt-20 text-center">
             <h1 class="text-4xl">
-                <span class="text-blue-500">Mock Website</span> 
+                <span class="text-blue-500">Mock Website</span>
             </h1>
 
             <p class="text-sm mt-4">
@@ -13,44 +13,21 @@
                 <!--  Category -->
                 <div class="relative lg:inline-flex bg-gray-100 rounded-xl">
 
-                    <x-dropdown>
-                        <x-slot name="trigger">
-                            <button 
-                           
-                                class="py-2 pl-3 pr-9 text-sm font-semibold w-full lg:w-50 text-left flex lg:inline-flex">
-                                
-                                {{ isset($current_category) ? ucwords($current_category->name) : 'Category'}}
-                        
-                                <x-icon name="down-arrow" class="absolute pointer-events-none"  style="right: 12px;"/>
-                            </button>
-                        </x-slot>
-                           <x-dropdown-item href="/" :active="request()->routeIs('home')">All</x-dropdown-item>
-
-                            @foreach ($categories as $category  )
-
-                            <x-dropdown-item 
-                                href="/categories/{{ $category->slug }}"
-                                :active='request()->is("categories/{ $category->slug }")'
-                            >
-                                {{ ucwords($category->name)}}
-                            </x-dropdown-item>
-    
-                            @endforeach
-                    </x-dropdown>
+                    <x-category-dropdown/>
 
                 </div>
 
                 <!--  Type -->
-                <div class="relative lg:inline-flex bg-gray-100 rounded-xl">
+                {{-- <div class="relative lg:inline-flex bg-gray-100 rounded-xl">
 
                     <x-dropdown>
                         <x-slot name="trigger">
-                            <button 
-                            
+                            <button
+
                                 class="py-2 pl-3 pr-9 text-sm font-semibold w-full lg:w-50 text-left flex lg:inline-flex">
-                                
+
                                 {{ isset($current_category) ? ucwords($current_category->name) : 'Type'}}
-                        
+
                                 <x-icon name="down-arrow" class="absolute pointer-events-none"  style="right: 12px;"/>
                             </button>
                         </x-slot>
@@ -58,23 +35,23 @@
 
                             @foreach ($types as $type)
 
-                            <x-dropdown-item 
+                            <x-dropdown-item
                                 href="/types/{{ $type->slug }}"
                                 :active='request()->is("types/{ $type->slug }")'
                             >
                                 {{ ucwords($type->name)}}
                             </x-dropdown-item>
-    
+
                             @endforeach
                     </x-dropdown>
 
-                </div>
+                </div> --}}
 
                 <!-- Search -->
                 <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl px-3 py-2">
                     <form method="GET" action="#">
-                        <input type="text" 
-                        name="search" 
+                        <input type="text"
+                        name="search"
                         placeholder="Find something"
                         class="bg-transparent placeholder-black font-semibold text-sm"
                         value="{{ request('search') }}">

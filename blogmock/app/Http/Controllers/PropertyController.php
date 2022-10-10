@@ -13,23 +13,22 @@ class PropertyController extends Controller
     //
     public function index()
     {
-        
-    
-        return view('property', [
-                
+
+
+        return view('property.index', [
+
             'posts' => Property::latest()->filter(request(['search']))->get(),
-            'categories' => Category::all(),
             'types' => Type::all()
-        
+
             ]);
     }
 
-    public function showPost(Post $post)
+    public function showPost(Property $post)
     {
         //Find a view by its slug and pass it to a view called "post"
-   
-        return view('post' , [
-            'post' => $post  
+
+        return view('property.showPost' , [
+            'post' => $post
         ]);
     }
 

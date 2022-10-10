@@ -2,7 +2,7 @@
 
 <x-layout>
 
-@include('_post-header')
+@include('_header')
 
 <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
 
@@ -28,10 +28,10 @@
         <div>
             {{$post->excerpt}}
         </div>
-        
+
         <p>
-            <a href="/categories/{{ $post->category->slug }}">{{$post->category->name}}</a> 
-            <a href="/types/{{ $post->type->slug }}">{{$post->type->name}}</a>   
+            <a href="/categories/{{ $post->category->slug }}">{{$post->category->name}}</a>
+            <a href="/types/{{ $post->type->slug }}">{{$post->type->name}}</a>
         </p>
     </article>
     @endforeach --}}
