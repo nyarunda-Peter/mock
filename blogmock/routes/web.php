@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\NewPropertyController;
 use App\Http\Controllers\PropertyController;
@@ -24,20 +25,43 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
+//Index Page Route
 Route::get('/', [PropertyController::class, 'index'])->name('home');
 
-Route::view('login', 'auth.login')->name('login')->middleware(['guest']);
-Route::post('login', [LoginController::class, 'index'])->name('login')->middleware(['guest']);
-
+//SignUp Form Routes
 Route::view('signup', 'auth.signup')->name('signup');
 Route::post('signup', [SignupController::class, 'index'])->name('signup');
 
-Route::view('Add-Property', 'property.addproperty')->name('Add-Property');
-Route::get('Add-Property-Details', [NewPropertyController::class, 'propertyDetailsForm'])->name('Add-Property-Details');
-Route::post('Add-Property-Details', [NewPropertyController::class, 'index'])->name('Add-Property-Details');
+//Login Form Routes
+Route::view('login', 'auth.login')->name('login')->middleware(['guest']);
+Route::post('login', [LoginController::class, 'index'])->name('login')->middleware(['guest']);
 
+//Logout Routes
+// Route::get('logout', 'auth.logout')->name('logout');
+
+Route::get('logout', [LogoutController::class, 'logout'])->name('logout');
+
+
+//Property Registration Routes
+Route::get('Add-Property', function(){ 
+    return view('property.addproperty', [
+        'posts' => Category::all(),
+        'types' => Type::all()
+    ]);
+})->name('Add-Property');
+
+//View to Add Property details
+// [NewPropertyController::class, 'propertyDetailsForm']
+
+Route::get('Add-Property-Details', function(){
+    // dd($request->all());
+} )->name('Add-Property-Details');
+// Route::post('Add-Property-Details', [NewPropertyController::class, 'index'])->name('Add-Property-Details');
+
+//Property Post Display Route
 Route::get('property/{post:slug}',[PropertyController::class, 'showPost'] )->name('view_single_property');
 
+//Category Filtering ->  For Sale || For Rent 
 Route::get('categories/{category:slug}', function (Category $category){
 
     return view('property.index', [
@@ -48,6 +72,7 @@ Route::get('categories/{category:slug}', function (Category $category){
     ]);
 });
 
+//Type Filtering -> House || Apartment || Plot
 Route::get('types/{type:slug}', function (Type $type){
 
     return view('property.index', [
@@ -58,7 +83,7 @@ Route::get('types/{type:slug}', function (Type $type){
 });
 
 
-//Not Needed so far
+//Not Needed soo far
 // Route::get('authors/{author:username}', function (User $author){
 
 //     return view('property', [

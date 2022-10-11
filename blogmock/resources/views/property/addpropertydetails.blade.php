@@ -21,11 +21,9 @@
 
                                     if($prop_type == '1' || '2') { ?>
                                         <form action="" method="post" id="frmProperty" enctype="multipart/form-data" onSubmit="">
-                                        @csrf
-
-                                            @foreach (request()->post() as $key => $val)
+                                                                                    {{-- @foreach (request()->post() as $key => $val)
                                             <input type="hidden" name="{{ $key }}" value="<?= $val ?>">
-                                            @endforeach
+                                            @endforeach --}}
 
                                             <input type="hidden" name="type" value="<?= request()->post('prop-type') ?>">
                                             <input type="hidden" name="category" value="<?= request()->post('prop-category') ?>">

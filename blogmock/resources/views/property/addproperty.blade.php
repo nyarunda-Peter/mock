@@ -12,7 +12,7 @@
                             </div>
 
                             <div class="card-body">
-                                <form action="{{ route('Add-Property-Details') }}" method="post" id="frmLogin" onSubmit="">
+                                <form action="{{ route('Add-Property-Details') }}" method="POST" id="frmLogin" onSubmit="">
 
                                     @csrf
 
@@ -22,18 +22,20 @@
                                             <label for="prop-category">Property Category:</label> <span class="error-info" id="prop-category-info"></span>
                                             <select class="form-control" name="prop-category" id="prop-category" >
                                                 <option value="none" selected disabled hidden>--Select Property Category--</option>
-                                                <option value="1">For Sale</option>
-                                                <option value="2">For Rent</option>
-                                                <option value="3">For Lease</option>
+
+                                                @foreach ($posts as $category)
+                                                    <option value="{{ $category->id }}"> {{ ucwords($category->name)}}</option>
+                                                @endforeach
+
                                             </select>
                                         </div>
                                         <div class="col">
                                             <label for="prop-type">Property Type: </label> <span class="error-info" id="prop-type-info"></span>
                                             <select class="form-control" name="prop-type" id="prop-type" >
                                                 <option value="none" selected disabled hidden>--Select Property Type--</option>
-                                                <option value="1">House</option>
-                                                <option value="2">Apartment</option>
-                                                <option value="3">Plot</option>
+                                                @foreach ($types as $type)
+                                                    <option value="{{ $type->id }}"> {{ ucwords($type->name)}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>

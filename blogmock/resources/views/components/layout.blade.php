@@ -40,11 +40,15 @@
 
                 <a href="{{ route('login') }}" class="text-xs font-bold uppercase">Login</a>
 
-                <a href="{{ route('signup') }}" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                <a href="{{ route('signup') }}" class="text-xs font-bold uppercase">
                     Sign Up
                 </a>
+                <a href="{{ route('logout') }}" class="text-xs font-bold uppercase">
+                    Logout
+                </a>
 
-                <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                {{-- bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 --}}
+                <a href=" {{ route('Add-Property') }} " class="text-xs font-bold uppercase">
                     Create A Post
                 </a>
             </div>
