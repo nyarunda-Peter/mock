@@ -14,7 +14,7 @@ class Property extends Model
 
     /**
      * The model's default values for attributes
-     * 
+     *
      * @var array
      */
     protected $attributes = [
@@ -23,7 +23,11 @@ class Property extends Model
     ];
 
     //Not advisable as it might load relationships even when not needed -> make helper method or use ->without(['attributes to ignore'])
-    protected $with = ['category','type', 'author'];
+    protected $with = ['category','type', 'author', 'features'];
+
+    protected $casts = [
+        'overview' => 'array'
+    ];
 
     public function scopeFilter($query, array $filters) //Property::newQuery()->filter()
     {
@@ -35,6 +39,14 @@ class Property extends Model
         }
 
 
+    }
+
+    function features(){
+        return $this->belongsToMany(Feature::class, 'property_features');
+    }
+
+    function images(){
+        return $this->hasMany(PropertyImage::class);
     }
 
     public function category(){

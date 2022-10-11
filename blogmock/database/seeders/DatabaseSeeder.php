@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        
-        //Truncating tables 
+
+        //Truncating tables
 
 
         // User::truncate();
@@ -50,13 +50,15 @@ class DatabaseSeeder extends Seeder
             'type_id' => $type->id
         ]);
 
-        
-        
+        $this->call(FeaturesSeeder::class);
+
+
+
         //Manual Seeding
 
-      
+
         // $user = User::factory(1)->create();
-        
+
 
 
         // $rent = Category::create([
@@ -68,13 +70,13 @@ class DatabaseSeeder extends Seeder
         // $sale = Category::create([
         //     'name'=> 'Sale',
         //     'slug'=> 'for-sale'
-            
+
         // ]);
 
         // $lease = Category::create([
         //     'name'=> 'Lease',
         //     'slug'=> 'for-lease'
-            
+
         // ]);
 
         // $house = Type::create([
