@@ -50,13 +50,12 @@ Route::get('Add-Property', function(){
     ]);
 })->name('Add-Property');
 
-//View to Add Property details
-// [NewPropertyController::class, 'propertyDetailsForm']
+Route::post('submit',[NewPropertyController::class, 'propertySubmit'])->name('submit');
+//Property details routes
+Route::get('Add-Property-Details', [NewPropertyController::class, 'propertyDetailsForm'])->name('Add-Property-Details');
 
-Route::get('Add-Property-Details', function(){
-    // dd($request->all());
-} )->name('Add-Property-Details');
-// Route::post('Add-Property-Details', [NewPropertyController::class, 'index'])->name('Add-Property-Details');
+Route::post('Add-Property-Details', [NewPropertyController::class, 'index'])->name('Add-Property-Details');
+
 
 //Property Post Display Route
 Route::get('property/{post:slug}',[PropertyController::class, 'showPost'] )->name('view_single_property');

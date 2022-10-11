@@ -14,24 +14,24 @@
                             <?php
                                 if(isset($_POST['prop_btn'])){
 
-
+                                    
 
                                     $prop_type = isset($_POST['prop-type']) ? $_POST['prop-type'] : false ;
 
-
+                                    
                                     if($prop_type == '1' || '2') { ?>
                                         <form action="" method="post" id="frmProperty" enctype="multipart/form-data" onSubmit="">
                                                                                     {{-- @foreach (request()->post() as $key => $val)
                                             <input type="hidden" name="{{ $key }}" value="<?= $val ?>">
                                             @endforeach --}}
-
-                                            <input type="hidden" name="type" value="<?= request()->post('prop-type') ?>">
-                                            <input type="hidden" name="category" value="<?= request()->post('prop-category') ?>">
-                                            <input type="hidden" name="title" value="<?= request()->post('prop-title') ?>">
-                                            <input type="hidden" name="locality" value="<?= request()->post('prop-loc') ?>">
-                                            <input type="hidden" name="description" value="<?= request()->post('prop-desc') ?>">
-                                            <input type="hidden" name="price" value="<?= request()->post('prop-price') ?>">
-                                            <input type="hidden" name="price_unit" value="<?= request()->post('price-unit') ?>">
+                                            
+                                            <input type="hidden" name="type" value="{{ $data->type }}">
+                                            <input type="hidden" name="category" value="{{ $category }}">
+                                            <input type="hidden" name="title" value="{{ $title }}">
+                                            <input type="hidden" name="locality" value="{{ $locality }}">
+                                            <input type="hidden" name="description" value="{{ $description }}">
+                                            <input type="hidden" name="price" value="{{ $price }}">
+                                            <input type="hidden" name="price_unit" value="{{ $price_unit }}">
 
                                             @error('status')
                                             <div class="alert alert-danger">

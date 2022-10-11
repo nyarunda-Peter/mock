@@ -12,7 +12,7 @@
                             </div>
 
                             <div class="card-body">
-                                <form action="{{ route('Add-Property-Details') }}" method="POST" id="frmLogin" onSubmit="">
+                                <form action="{{ route('submit') }}" method="POST" id="frmLogin" onSubmit="">
 
                                     @csrf
 

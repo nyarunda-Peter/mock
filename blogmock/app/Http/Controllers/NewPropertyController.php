@@ -31,6 +31,47 @@ class NewPropertyController extends Controller
         ]);
     }
 
+    public function propertySubmit(Request $request)
+    {
+        $features = Feature::all();
+
+        $grouped = [];
+
+        foreach($features as $feature){
+            if(!array_key_exists($feature->type, $grouped)){
+                $grouped[$feature->type] = [];
+            }
+
+            array_push($grouped[$feature->type], $feature);
+        }
+
+
+
+        $type = $request->input('prop-type');
+        $category = $request->input('prop-category');
+        $title = $request->input('prop-title');
+        $locality = $request->input('prop-loc');
+        $description = $request->input('prop-desc');
+        $price = $request->input('prop-price');
+        $price_unit = $request->input('price-unit');
+
+       
+
+        $data = ['type' => $type];
+        $data = ['category'=> $category];
+        $data = ['title' => $title];
+        $data = ['locality' => $locality];
+        $data = ['description' => $description];
+        $data = ['price' => $price];
+        $data = ['price_unit' => $price_unit];
+
+        return view('property.addpropertydetails', [
+            'features' => $grouped,
+            $data
+        ]);
+    }
+    
+
     function index(Request $request){
         if($request->filled('category')){
             return $this->propertyDetailsForm();

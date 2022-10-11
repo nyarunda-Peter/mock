@@ -1,0 +1,275 @@
+'''' Welcome page: where user would enter the email before proceeding to registration page
+
+<form method="POST" action="{{ route('welcome') }}">
+  {{ csrf_field() }}
+  <input type="text" size="40" name="email">
+  <input type="submit" name="submit">
+</form>
+
+<form action="{{ route('submit') }}" method="POST" id="frmLogin" onSubmit="">
+
+    @csrf
+
+    <!-- Property General Details -->
+    <div class="form-group row mb-6">
+        <div class="col">
+            <label for="prop-category">Property Category:</label> <span class="error-info" id="prop-category-info"></span>
+            <select class="form-control" name="prop-category" id="prop-category" >
+                <option value="none" selected disabled hidden>--Select Property Category--</option>
+
+                @foreach ($posts as $category)
+                    <option value="{{ $category->id }}"> {{ ucwords($category->name)}}</option>
+                @endforeach
+
+            </select>
+        </div>
+        <div class="col">
+            <label for="prop-type">Property Type: </label> <span class="error-info" id="prop-type-info"></span>
+            <select class="form-control" name="prop-type" id="prop-type" >
+                <option value="none" selected disabled hidden>--Select Property Type--</option>
+                @foreach ($types as $type)
+                    <option value="{{ $type->id }}"> {{ ucwords($type->name)}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+
+
+    <!-- Property Specific Details -->
+
+    <div class="form-group mb-3">
+        <label for="prop-title">Property Title: </label><span id="prop-title-info" class="error-info"></span>
+        <input name="prop-title" id="prop-title" type="Text" class="demo-input-box form-control" placeholder="Enter Property Title">
+    </div>
+
+
+    <!-- Property Location Details -->
+
+    <div class="form-group mb-3">
+        <label for="prop-loc">Property Locality: </label><span id="prop-loc-info" class="error-info"></span>
+        <select class="form-control" name="prop-loc" id="prop-loc" >
+            <option value="none" selected disabled hidden>--Select Property Locale--</option>
+            <option value="1">Runda</option>
+            <option value="2">Kitsuru</option>
+            <option value="3">Rosslyn</option>
+        </select>
+    </div>
+
+
+    <!-- Property DEscription Field -->
+
+    <div class="form-group row mb-3">
+        <label for="prop-desc">Property Description:</label><span id="prop-desc-info" class="error-info"></span>
+        <textarea name="prop-desc"  id="prop-desc" cols="20" rows="5" class="form-control" minlength="50" maxlength="200" class="form-control"></textarea>
+    </div>
+
+
+    <!-- Price Details Field-->
+
+    <div class="form-group row mb-6">
+        <div class="col">
+            <label for="price-unit">Price Unit:</label> <span class="error-info" id="price-unit-info"></span>
+            <select class="form-control" name="price-unit" id="price-unit" >
+                <option value="none" selected disabled hidden>--Select Price Unit--</option>
+                <option value="1">Kshs</option>
+                <option value="2">Usd</option>
+            </select>
+        </div>
+        <div>
+            <label for="prop-price">Price:</label> <span class="error-info" id="prop-price-info"></span>
+            <input type="text" name="prop-price" id="prop-price" class="demo-input-box form-control" placeholder="Enter Price in Values">
+        </div>
+    </div>
+
+
+    <div class="form-group mb-3 text-center m-4">
+        <input type="submit" name="prop_btn" id="prop_btn" value="Next"
+        class="btn btn-primary"></span>
+    </div>
+
+
+</form>
+
+
+'''' Register Page: this is where the email displays inside the input name reg_email 
+
+<form method="POST" action="{{ route('register') }}">
+{{ csrf_field() }}
+  <input type="email" size="40" name="reg_email" value="{{ $myemail }}">
+
+  <input type="submit" name="submit">
+</form>
+
+<form action="{{ route('register') }}" method="post" id="frmProperty" enctype="multipart/form-data" onSubmit="">
+    {{-- @foreach (request()->post() as $key => $val)
+            <input type="hidden" name="{{ $key }}" value="<?= $val ?>">
+        @endforeach --}}
+
+    <input type="hidden" name="type" value="{{ $type }}">
+    <input type="hidden" name="category" value="{{ $category }}">
+    <input type="hidden" name="title" value="{{ $title }}">
+    <input type="hidden" name="locality" value="{{ $locality }}">
+    <input type="hidden" name="description" value="{{ $description }}">
+    <input type="hidden" name="price" value="{{ $price }}">
+    <input type="hidden" name="price_unit" value="{{ $price_unit }}">
+
+    @error('status')
+    <div class="alert alert-danger">
+    {{ $message }}
+    </div>
+    @enderror
+
+    <div class="">
+
+    <!-- Property Internal Details -->
+
+    <div class="form-group row mb-6">
+    <div class="col">
+    <label for="prop-bedroom">Number of Bedrooms:</label> <span class="error-info" id="prop-bedroom-info"></span>
+    <select class="form-control" name="bedrooms" id="prop-bedroom" >
+    <option value="none" selected disabled hidden>--Select Number of Bedrooms--</option>
+    <option value="1">1 : One</option>
+    <option value="2">2 : Two</option>
+    <option value="3">3: Three</option>
+    <option value="4">4: Four</option>
+    <option value="5">5: Five</option>
+    </select>
+    </div>
+    <div class="col">
+    <label for="prop-bathroom">Number of Bathrooms: </label> <span class="error-info" id="prop-bathroom-info"></span>
+    <select class="form-control" name="bathrooms" id="prop-bathroom" >
+    <option value="none" selected disabled hidden>--Select Number of Bathrooms--</option>
+    <option value="1">1 : One</option>
+    <option value="2">2 : Two</option>
+    <option value="3">3: Three</option>
+    <option value="4">4: Four</option>
+    <option value="5">5: Five</option>
+    </select>
+    </div>
+    </div>
+
+
+    @foreach ($features as $group => $grouped_features)
+    <div class = "">
+    <label for="internal_features">{{ $group }}: </label> <span class="error-info" id="internal-features-info"></span>
+    <div class="form-group row mb-6 m-3">
+    <p id="internal_features">
+    @foreach ($grouped_features as $feature)
+    <label><input type="checkbox" name="features[]" value="{{ $feature->id }}"><span>{{ $feature->name }}</span></label>
+    @endforeach
+    </p>
+    </div>
+    </div>
+    @endforeach
+
+    <!-- Property Images Details -->
+    <div class="form-group mb-3">
+    <label for="">Main Image </label>
+    <input type="file" class="form-control" required name="main_image">
+    </div>
+    <div class="form-group mb-3">
+    <label for="">Other Image </label>
+    <input type="file" class="form-control" name="other_image[]" multiple>
+    </div>
+    <div class=field-column>
+    <div class="form-group mb-3 text-center m-4">
+    <input type="submit" name="register_btn" id="register_btn" value="Register Property"
+    class="btn btn-primary"></span>
+    </div>
+    </div>
+    </div>
+    </form>
+    <?php
+    }else{
+    ?>
+    <form action="" method="post" id="frmPlot" enctype="multipart/form-data" onSubmit="">
+    @csrf
+
+    <input type="hidden" name="type" value="<?= request()->post('prop-type') ?>">
+    <input type="hidden" name="category" value="<?= request()->post('prop-category') ?>">
+    <input type="hidden" name="title" value="<?= request()->post('prop-title') ?>">
+    <input type="hidden" name="locality" value="<?= request()->post('prop-loc') ?>">
+    <input type="hidden" name="description" value="<?= request()->post('prop-desc') ?>">
+    <input type="hidden" name="price" value="<?= request()->post('prop-price') ?>">
+    <input type="hidden" name="price_unit" value="<?= request()->post('price-unit') ?>">
+
+    <div class="">
+
+    <!-- Property Internal Details -->
+
+    <div class="form-group row mb-6">
+    <div class="col">
+    <label for="plot-size">Plot Size:</label> <span class="error-info" id="plot-size-info"></span>
+    <input type="text" name="size" id="plot-size" class="form-control">
+    </div>
+    <div class="col">
+    <label for="plot-size-unit">Plot Measurement units: </label> <span class="error-info" id="plot-size-unit-info"></span>
+    <select class="form-control" name="dimensions" id="plot-size-unit" >
+    <option value="none" selected disabled hidden>--Select Measurement units--</option>
+    <option value="1">Sq Metres </option>
+    <option value="2">Acres</option>
+    <option value="3">Hectares</option>
+    </select>
+    </div>
+    </div>
+
+
+    <!-- Property Images Details -->
+    <div class="form-group mb-3">
+    <label for="">Main Image </label>
+    <input type="file" class="form-control" required name="main_image">
+    </div>
+    <div class="form-group mb-3">
+    <label for="">Other Image </label>
+    <input type="file" class="form-control" name="other_image[]" multiple>
+    </div>
+    <div class=field-column>
+    <div class="form-group mb-3 text-center m-4">
+    <input type="submit" name="register_btn" id="register_btn" value="Register Plot"
+    class="btn btn-primary"></span>
+    </div>
+    </div>
+    </div>
+</form>
+
+ //the controller collects the email input from the welcome page
+public function Welcome(Request $request)
+{
+  $email = $request->input('email');
+  $data['myemail']=$email; //assign the email variable myemail data to be pass to registration page view
+  return view('registerpage',$data);  //pass the data to the view
+
+}
+public function Welcome(Request $request)
+{
+    <input type="hidden" name="type" value="{{ $type }}">
+    <input type="hidden" name="category" value="{{ $category }}">
+    <input type="hidden" name="title" value="{{ $title }}">
+    <input type="hidden" name="locality" value="{{ $locality }}">
+    <input type="hidden" name="description" value="{{ $description }}">
+    <input type="hidden" name="price" value="{{ $price }}">
+    <input type="hidden" name="price_unit" value="{{ $price_unit }}">
+
+    $type = $request->input('prop-type');
+    $category = $request->input('prop-category');
+    $title = $request->input('prop-title');
+    $locality = $request->input('prop-loc');
+    $description = $request->input('prop-desc');
+    $price = $request->input('prop-price');
+    $price_unit = $request->input('price-unit');
+    
+  $data['myemail']=$email; //assign the email variable myemail data to be pass to registration page view
+  $data['type']=$type;
+  $data['category']=$category;
+  $data['title']= $title;
+  $data['locality']=$locality;
+  $data['description']=$description;
+  $data['price']=$price;
+  $data['price_unit']=$price_unit;
+
+  return view('registerpage',$data);  //pass the data to the view
+
+}
+
+//Route
+Route('/welcome-page','MyController@Welcome')->name('welcome'); //ofcourse the route using name route welcome
