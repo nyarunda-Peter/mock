@@ -18,8 +18,8 @@ class PropertyController extends Controller
         return view('property.index', [
 
             'posts' => Property::latest()->filter(request(['search']))->get(),
-            'types' => Type::all()
-
+            'types' => Type::all(),
+            'categories' => Category::all()
             ]);
     }
 

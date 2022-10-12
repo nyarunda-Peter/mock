@@ -12,7 +12,22 @@
                             </div>
 
                             <div class="card-body">
-                                <form action="{{ route('submit') }}" method="POST" id="frmLogin" onSubmit="">
+                                <form action="" method="POST" id="frmLogin" onSubmit="">
+                                    
+                                    //Status error message
+                                    @error('status')
+                                    <div class='alert alert-danger'>
+                                        {{ $message }}
+                                    </div>
+                                        
+                                    @enderror
+
+                                    @error('exception')
+                                    <div class='alert alert-danger'>
+                                        {{ $message }}
+                                    </div>
+                                        
+                                    @enderror
 
                                     @csrf
 

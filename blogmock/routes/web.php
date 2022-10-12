@@ -43,18 +43,13 @@ Route::get('logout', [LogoutController::class, 'logout'])->name('logout');
 
 
 //Property Registration Routes
-Route::get('Add-Property', function(){ 
-    return view('property.addproperty', [
-        'posts' => Category::all(),
-        'types' => Type::all()
-    ]);
-})->name('Add-Property');
+Route::middleware(['auth'])
+->group(function(){
 
-Route::post('submit',[NewPropertyController::class, 'propertySubmit'])->name('submit');
-//Property details routes
-Route::get('Add-Property-Details', [NewPropertyController::class, 'propertyDetailsForm'])->name('Add-Property-Details');
-
-Route::post('Add-Property-Details', [NewPropertyController::class, 'index'])->name('Add-Property-Details');
+    Route::get('Add-Property', [NewPropertyController::class, 'stepOne'])->name('Add-Property');
+    Route::get('Add-Property', [NewPropertyController::class, 'stepTwo'])->name('Add-Property');
+    Route::get('Add-Property/store', [NewPropertyController::class, 'store'])->name('Store-Property');
+});
 
 
 //Property Post Display Route

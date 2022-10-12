@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Feature;
 use App\Models\Property;
 use App\Models\PropertyImage;
+use App\Models\Type;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -13,69 +15,34 @@ use Illuminate\Support\Facades\DB;
 
 class NewPropertyController extends Controller
 {
-    function propertyDetailsForm(){
+    function stepOne(){
+        return view('property.addproperty', [
+            'categories' => Category::all(),
+            'types' => Type::all()
+        ]);
+    }
+    
+    function stepTwo(){
         $features = Feature::all();
 
         $grouped = [];
 
         foreach($features as $feature){
+
             if(!array_key_exists($feature->type, $grouped)){
                 $grouped[$feature->type] = [];
             }
 
+            // ['Internal'['AirCon',.., 'FIber'], 'External'['Park',..,'pool']]
             array_push($grouped[$feature->type], $feature);
         }
 
-        return view('property.addpropertydetails', [
+        return view('property.addpropertydetails',[
             'features' => $grouped
         ]);
     }
 
-    public function propertySubmit(Request $request)
-    {
-        $features = Feature::all();
-
-        $grouped = [];
-
-        foreach($features as $feature){
-            if(!array_key_exists($feature->type, $grouped)){
-                $grouped[$feature->type] = [];
-            }
-
-            array_push($grouped[$feature->type], $feature);
-        }
-
-
-
-        $type = $request->input('prop-type');
-        $category = $request->input('prop-category');
-        $title = $request->input('prop-title');
-        $locality = $request->input('prop-loc');
-        $description = $request->input('prop-desc');
-        $price = $request->input('prop-price');
-        $price_unit = $request->input('price-unit');
-
-       
-
-        $data = ['type' => $type];
-        $data = ['category'=> $category];
-        $data = ['title' => $title];
-        $data = ['locality' => $locality];
-        $data = ['description' => $description];
-        $data = ['price' => $price];
-        $data = ['price_unit' => $price_unit];
-
-        return view('property.addpropertydetails', [
-            'features' => $grouped,
-            $data
-        ]);
-    }
-    
-
-    function index(Request $request){
-        if($request->filled('category')){
-            return $this->propertyDetailsForm();
-        }
+    function store(Request $request){
 
         $validator = validator($request->all(), [
 
@@ -110,8 +77,11 @@ class NewPropertyController extends Controller
             ]
         ]);
 
-        // Images
-        if(!$this->uploadMainImage($property, $request->file('main_image'))){
+        //Making slug unique
+
+        $property->slug .= $property->id;
+
+        if(!$property->save()){
             DB::rollBack();
 
             return back()->withInput()->withErrors([
@@ -119,23 +89,46 @@ class NewPropertyController extends Controller
             ]);
         }
 
-        if(!$this->uploadOtherImages($property, $request->file('other_image'))){
+        // Main Image Upload
+
+        $result = $this->uploadMainImage($property, $request->file('main_image'));
+
+        if(!is_bool($result)){
             DB::rollBack();
 
             return back()->withInput()->withErrors([
-                'status' => 'Unable to add property. Please try again'
+                'status' => 'Unable to add property. Please try again',
+                'exception' => $result->getMessage()
             ]);
         }
 
-        // Features
-        if(!$this->saveFeatures($property, $request->post('features'))){
+        // Multiple Images Upload
+
+        $result = $this->uploadOtherImages($property, $request->file('other_image'));
+       
+        if(!is_bool($result)){
             DB::rollBack();
 
             return back()->withInput()->withErrors([
-                'status' => 'Unable to add property. Please try again'
+                'status' => 'Unable to add property. Please try again',
+                'exception' => $result->getMessage()
             ]);
         }
 
+        // Feature Registration
+
+        $result = $this->saveFeatures($property, $request->post('features'));
+
+        if(!is_bool($result)){
+            DB::rollBack();
+
+            return back()->withInput()->withErrors([
+                'status' => 'Unable to add property. Please try again',
+                'exception' => $result->getMessage()
+            ]);
+        }
+
+        //Commiting
         DB::commit();
         return redirect()->route('view_single_property', [
             'post' => $property->slug
@@ -149,12 +142,16 @@ class NewPropertyController extends Controller
      */
     function uploadMainImage($property, $file){
         try{
+
             return $property->images()->create([
                 'path' => $file->store(PropertyImage::UPLOAD_FOLDER, 'public'),
                 'is_main' => true
             ]);
+
+            return true;
+
         }catch(Exception $e){
-            return false;
+            return $e;
         }
     }
 
@@ -164,6 +161,7 @@ class NewPropertyController extends Controller
      */
     function uploadOtherImages($property, $files){
         try{
+
             foreach($files as $file){
                 $property->images()->create([
                     'path' => $file->store(PropertyImage::UPLOAD_FOLDER, 'public'),
@@ -173,7 +171,7 @@ class NewPropertyController extends Controller
 
             return true;
         }catch(Exception $e){
-            return false;
+            return $e;
         }
     }
 
@@ -183,13 +181,14 @@ class NewPropertyController extends Controller
      */
     function saveFeatures($property, $selected_features){
         try{
+
             foreach($selected_features as $feature){
-                $property->features()->create([
-                    'feature_id' => $feature
-                ]);
+                $property->features()->attach($feature);
             }
+
+            return true;
         }catch(Exception $e){
-            return false;
+            return $e;
         }
     }
 }
