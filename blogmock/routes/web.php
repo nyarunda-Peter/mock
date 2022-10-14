@@ -43,6 +43,13 @@ Route::middleware(['auth'])
 
 Route::get('property/{post:slug}',[PropertyController::class, 'showPost'] )->name('view_single_property');
 
+Route::get('profile', function (){
+
+    return view('profile', [
+        'posts' => Property::all()
+    ]);
+})->middleware(['auth']);
+
 Route::get('categories/{category:slug}', function (Category $category){
 
     return view('property.index', [

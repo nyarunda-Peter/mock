@@ -1,6 +1,6 @@
 <x-layout>
 
-    <section class="px-6 py-8">
+    <section class="px-6 py-8 ">
 
         <form method="post">
             @csrf

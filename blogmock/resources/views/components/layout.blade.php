@@ -36,17 +36,17 @@
             </div>
 
             <div class="mt-8 md:mt-0">
+
+                {{-- blue button : bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5 --}}
                 <a href="/" class="text-xs font-bold uppercase">Home Page</a>
 
                 <a href="{{ route('login') }}" class="text-xs font-bold uppercase">Login</a>
 
-                <a href="{{ route('signup') }}" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
-                    Sign Up
-                </a>
+                <a href="{{ route('signup') }}" class="text-xs font-bold uppercase">Sign Up</a>
 
-                <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
-                    Create A Post
-                </a>
+                <a href="{{ route('Add-Property') }}" class="text-xs font-bold uppercase">Create A Post</a>
+
+                <a href="#" class="text-xs font-bold uppercase">Profile</a>
             </div>
         </nav>
 
