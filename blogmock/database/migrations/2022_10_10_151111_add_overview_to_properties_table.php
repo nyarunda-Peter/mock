@@ -14,8 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('properties', function (Blueprint $table) {
-            //set to nullable?
-            $table->json('overview')->after('body')->nullable();
+            $table->json('overview')->after('body');
         });
     }
 

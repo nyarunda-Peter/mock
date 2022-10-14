@@ -12,21 +12,18 @@
                             </div>
 
                             <div class="card-body">
-                                <form action="" method="POST" id="frmLogin" onSubmit="">
-                                    
-                                    //Status error message
+                                <form action="" method="post" id="frmLogin" onSubmit="">
+
                                     @error('status')
-                                    <div class='alert alert-danger'>
+                                    <div class="alert alert-danger">
                                         {{ $message }}
                                     </div>
-                                        
                                     @enderror
 
                                     @error('exception')
-                                    <div class='alert alert-danger'>
+                                    <div class="alert alert-danger">
                                         {{ $message }}
                                     </div>
-                                        
                                     @enderror
 
                                     @csrf
@@ -38,7 +35,7 @@
                                             <select class="form-control" name="prop-category" id="prop-category" >
                                                 <option value="none" selected disabled hidden>--Select Property Category--</option>
 
-                                                @foreach ($posts as $category)
+                                                @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}"> {{ ucwords($category->name)}}</option>
                                                 @endforeach
 
@@ -48,9 +45,11 @@
                                             <label for="prop-type">Property Type: </label> <span class="error-info" id="prop-type-info"></span>
                                             <select class="form-control" name="prop-type" id="prop-type" >
                                                 <option value="none" selected disabled hidden>--Select Property Type--</option>
+
                                                 @foreach ($types as $type)
                                                     <option value="{{ $type->id }}"> {{ ucwords($type->name)}}</option>
                                                 @endforeach
+                                                
                                             </select>
                                         </div>
                                     </div>
@@ -60,7 +59,7 @@
 
                                     <div class="form-group mb-3">
                                         <label for="prop-title">Property Title: </label><span id="prop-title-info" class="error-info"></span>
-                                        <input name="prop-title" id="prop-title" type="Text" class="demo-input-box form-control" placeholder="Enter Property Title">
+                                        <input name="prop-title" id="prop-title" value="{{ old('prop-title') }}" type="Text" class="demo-input-box form-control" placeholder="Enter Property Title">
                                     </div>
 
 
@@ -81,7 +80,7 @@
 
                                     <div class="form-group row mb-3">
                                         <label for="prop-desc">Property Description:</label><span id="prop-desc-info" class="error-info"></span>
-                                        <textarea name="prop-desc"  id="prop-desc" cols="20" rows="5" class="form-control" minlength="50" maxlength="200" class="form-control"></textarea>
+                                        <textarea name="prop-desc"  id="prop-desc" cols="20" rows="5" class="form-control" minlength="50" maxlength="200" class="form-control">{{  old('prop-desc') }}</textarea>
                                     </div>
 
 
@@ -98,7 +97,7 @@
                                         </div>
                                         <div>
                                             <label for="prop-price">Price:</label> <span class="error-info" id="prop-price-info"></span>
-                                            <input type="text" name="prop-price" id="prop-price" class="demo-input-box form-control" placeholder="Enter Price in Values">
+                                            <input type="text" name="prop-price" id="prop-price" class="demo-input-box form-control" value="{{ old('prop-price') }}" placeholder="Enter Price in Values">
                                         </div>
                                     </div>
 

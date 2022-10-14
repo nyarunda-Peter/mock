@@ -20,6 +20,7 @@ class PropertyController extends Controller
             'posts' => Property::latest()->filter(request(['search']))->get(),
             'types' => Type::all(),
             'categories' => Category::all()
+
             ]);
     }
 

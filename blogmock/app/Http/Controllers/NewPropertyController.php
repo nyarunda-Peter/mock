@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Feature;
-use App\Models\Property;
-use App\Models\PropertyImage;
+use Exception;
 use App\Models\Type;
 use App\Models\User;
-use Exception;
+use App\Models\Feature;
+use App\Models\Category;
+use App\Models\Property;
 use Illuminate\Http\Request;
+use App\Models\PropertyImage;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 
@@ -21,29 +21,26 @@ class NewPropertyController extends Controller
             'types' => Type::all()
         ]);
     }
-    
+
     function stepTwo(){
         $features = Feature::all();
 
         $grouped = [];
 
         foreach($features as $feature){
-
             if(!array_key_exists($feature->type, $grouped)){
                 $grouped[$feature->type] = [];
             }
 
-            // ['Internal'['AirCon',.., 'FIber'], 'External'['Park',..,'pool']]
             array_push($grouped[$feature->type], $feature);
         }
 
-        return view('property.addpropertydetails',[
+        return view('property.addpropertydetails', [
             'features' => $grouped
         ]);
     }
 
     function store(Request $request){
-
         $validator = validator($request->all(), [
 
         ]);
@@ -77,8 +74,7 @@ class NewPropertyController extends Controller
             ]
         ]);
 
-        //Making slug unique
-
+        // Make slug unique
         $property->slug .= $property->id;
 
         if(!$property->save()){
@@ -89,7 +85,8 @@ class NewPropertyController extends Controller
             ]);
         }
 
-        // Main Image Upload
+
+        // Images
 
         $result = $this->uploadMainImage($property, $request->file('main_image'));
 
@@ -102,10 +99,7 @@ class NewPropertyController extends Controller
             ]);
         }
 
-        // Multiple Images Upload
-
         $result = $this->uploadOtherImages($property, $request->file('other_image'));
-       
         if(!is_bool($result)){
             DB::rollBack();
 
@@ -115,10 +109,8 @@ class NewPropertyController extends Controller
             ]);
         }
 
-        // Feature Registration
-
+        // Features
         $result = $this->saveFeatures($property, $request->post('features'));
-
         if(!is_bool($result)){
             DB::rollBack();
 
@@ -128,7 +120,6 @@ class NewPropertyController extends Controller
             ]);
         }
 
-        //Commiting
         DB::commit();
         return redirect()->route('view_single_property', [
             'post' => $property->slug
@@ -142,14 +133,12 @@ class NewPropertyController extends Controller
      */
     function uploadMainImage($property, $file){
         try{
-
-            return $property->images()->create([
+            $property->images()->create([
                 'path' => $file->store(PropertyImage::UPLOAD_FOLDER, 'public'),
                 'is_main' => true
             ]);
-
+            
             return true;
-
         }catch(Exception $e){
             return $e;
         }
@@ -161,7 +150,6 @@ class NewPropertyController extends Controller
      */
     function uploadOtherImages($property, $files){
         try{
-
             foreach($files as $file){
                 $property->images()->create([
                     'path' => $file->store(PropertyImage::UPLOAD_FOLDER, 'public'),
@@ -181,7 +169,6 @@ class NewPropertyController extends Controller
      */
     function saveFeatures($property, $selected_features){
         try{
-
             foreach($selected_features as $feature){
                 $property->features()->attach($feature);
             }
