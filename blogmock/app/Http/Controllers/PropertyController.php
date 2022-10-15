@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Type;
 use App\Models\Category;
+use App\Models\Feature;
 use App\Models\Property;
+use App\Models\PropertyFeature;
 use Illuminate\Http\Request;
 
 class PropertyController extends Controller
@@ -26,10 +28,15 @@ class PropertyController extends Controller
 
     public function showPost(Property $post)
     {
-        //Find a view by its slug and pass it to a view called "post"
-
+        //Collecting Attached Features
+        // $name = [];
+        // foreach ($post->features as $feature) {
+        //     array_push($name, $feature->name);
+        // }
+        
         return view('property.showPost' , [
             'post' => $post
+
         ]);
     }
 

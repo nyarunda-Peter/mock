@@ -51,6 +51,12 @@
                         {!! $post->body!!}
 
                     </div>
+
+                    <div>
+                        @foreach ($post->features as $feature) 
+                            <button class="bg-blue-300 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded m-2">{{ $feature->name}}</button>
+                        @endforeach
+                    </div>
                 </div>
             </article>
         </main>

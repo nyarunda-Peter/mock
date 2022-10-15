@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\NewPropertyController;
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\PropertyModsController;
 use App\Models\Type;
 use App\Models\User;
 use App\Models\Category;
@@ -43,12 +44,7 @@ Route::middleware(['auth'])
 
 Route::get('property/{post:slug}',[PropertyController::class, 'showPost'] )->name('view_single_property');
 
-Route::get('profile', function (){
-
-    return view('profile', [
-        'posts' => Property::all()
-    ]);
-})->middleware(['auth']);
+Route::get('profile', [ PropertyModsController::class, 'SelectProperty'])->middleware(['auth'])->name('profile');
 
 Route::get('categories/{category:slug}', function (Category $category){
 

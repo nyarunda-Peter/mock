@@ -13,4 +13,16 @@ class PropertyFeature extends Model
         'property_id',
         'feature_id'
     ];
+
+    //Databse Relationships
+
+    //One record belongsTo One Property
+    function property(){
+        return $this->belongsTo(Property::class, 'property_id');
+    }
+
+    //One record Belongs to one Feature
+    function feature(){
+        return $this->belongsTo(Feature::class, 'feature_id');
+    }
 }

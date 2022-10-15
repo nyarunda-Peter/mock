@@ -41,23 +41,36 @@ class Property extends Model
 
     }
 
+    //Database Relations
+    /**
+     * hasOne-> One-to-One 
+     * hasMany-> One-To-Many
+     * belongTo-> One-To-One (Inverse)
+     * belongsToMany-> One-To-Many (Inverse)
+     */
+
+    //One Property has Many features
     function features(){
         return $this->belongsToMany(Feature::class, 'property_features');
     }
 
+    //One Property hasMany Images
     function images(){
         return $this->hasMany(PropertyImage::class);
     }
 
+    //One Property belongsTo One Category
     public function category(){
-        //hasOne, hasMany, belongTo, belongsToMany
+        
         return $this->belongsTo(Category::class, 'category_id');
     }
 
+    //One Property belongsTo One Type
     public function type(){
         return $this->belongsTo(Type::class, 'type_id');
     }
 
+    //One Property belongsTo One Author
     public function author(){
         return $this->belongsTo(User::class, 'user_id');
     }

@@ -46,7 +46,7 @@
 
                 <a href="{{ route('Add-Property') }}" class="text-xs font-bold uppercase">Create A Post</a>
 
-                <a href="#" class="text-xs font-bold uppercase">Profile</a>
+                <a href="{{ route('profile') }}" class="text-xs font-bold uppercase">Profile</a>
             </div>
         </nav>
 
