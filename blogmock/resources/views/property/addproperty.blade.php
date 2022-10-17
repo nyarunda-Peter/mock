@@ -76,7 +76,7 @@
                                     </div>
 
 
-                                    <!-- Property DEscription Field -->
+                                    <!-- Property Description Field -->
 
                                     <div class="form-group row mb-3">
                                         <label for="prop-desc">Property Description:</label><span id="prop-desc-info" class="error-info"></span>

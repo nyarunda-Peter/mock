@@ -33,6 +33,7 @@ class PropertyController extends Controller
         // foreach ($post->features as $feature) {
         //     array_push($name, $feature->name);
         // }
+        //dd($name);
         
         return view('property.showPost' , [
             'post' => $post

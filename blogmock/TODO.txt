@@ -1,15 +1,17 @@
 Property Management
-    Allow null submission for other images
-    Allow null submission of features -> plot || Add options for plot features [Road Infrastructure, Water services, Electricity Services]
-    app.css messing up the display
+    Validating images if available -> Allow null submission for other images
+    Allow null submission of features -> plot || Add options for plot features [Road Infrastructure, Water services, Electricity Services] -> Grouping of features and how to display them selectively [Internal|external for normal property and Select External(new grouping?) for Plots]
+    app.css messing up the display -> How to use/embed a custom css???
 
-    Retrieve existing Property Details for editing - (property.showProperty view)
+    ->Retrieve existing Property Details for editing - (property.showProperty view)
     Editing overview values
-    Showcasing previously added images [Homepage, Specific property page, Edit Page]
-    Pop-up Alerts for removing property visibility
-    Saving modified data to be compared to existing data 
+    Showcasing added images [Homepage(main image), Specific property page (All images), Edit Page(all images)]
 
-    Process of removing/deleting a property -> <Require :Visibility status off for >60 days> -> Provide reason for deletion [can be a select option element with common reasons but also a textarea for any unrepresented option]-> Approval
+    Pop-up Alerts(Modal question at the bottom) for removing property visibility -> Requiring users' explicit confirmation on the remove visibility options-> Provide reason for visibility removal [can be a select option element with common reasons but also a textarea for any unrepresented option]
+
+    Saving modified data to be compared to existing data -> Allow moderator to determine chages made before|after scenarios
+
+    Process of removing/deleting a property -> <Require :Visibility status off for >60 days> -> Approval
     
     Notification panel -> Further Details of alerts -> Storage of alerts
 
@@ -25,6 +27,12 @@ Property Approval
     Offer response options to the owner [Advise on why property was denied approval [can be a select option element with common reasons but also a textarea for any unrepresented option]]
 
 
+    Moderation : https://github.com/hootlex/laravel-moderation#readme ???
+        add the status, moderated_by and moderated_at columns to your model's table.
+        Create a migration to add the new columns.
+
+        Querying pending and rejected posts !!!
+
 Users
     Provide more information on the user [fname,lname, phone number, [ check password === confirmpassword ]] -> check auth.signup view
     Adding extra info to users table
@@ -33,3 +41,30 @@ Users
     Password Resets
 
 Trace Log : For administrative roles [audit purposes]
+
+Tracking 
+    Implement Cookies to track website usage
+
+//Pending
+Replace all back links with dynamic linking {{ url()->previous() }}
+
+Adding caption to images for alttext???
+Admin || Guest middleware --- Explanation 
+Adding new columns to tables migration --- Expalanation
+Reverse the migrations. ---Explanation
+
+
+Modals -> Can we use them to popup responses to why is a property being removed or why was an approval rejected ->https://dev.to/kingsconsult/how-to-create-modal-in-laravel-8-and-laravel-6-7-with-ajax-m25#:~:text=Modal%20helps%20us%20to%20work,view%20into%20the%20modal%20dynamically.
+[Modal helps us to work on another page without moving out of the current page, which helps not to lose sight of where we are.]
+[laravel forms, @yield <title>App Name - @yield('title')</title>, ]
+
+Admin ?? Moderator
+
+Users??
+[
+    Admin,
+    Moderator (Will perform moderation),
+    Internal Employee(Currently adds property and maintains proeperty),
+    User(Currently only views, but would[add property, Edit property, Save proeprty to view later]),
+]
+

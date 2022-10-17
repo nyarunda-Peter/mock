@@ -1,0 +1,18 @@
+#internal_features input[type="checkbox"] {
+    display: none;
+  }
+  
+  #internal_features span {
+    display: inline-block;
+    padding: 10px;
+    margin: 2px;
+    text-transform: uppercase;
+    border: 2px solid black;
+    border-radius: 3px;
+    color: black
+  }
+  
+  #internal_features input[type="checkbox"]:checked + span {
+    background-color: rgb(49, 102, 49);
+    color: black;
+  }

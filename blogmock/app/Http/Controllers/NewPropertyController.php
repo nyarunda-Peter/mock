@@ -40,7 +40,7 @@ class NewPropertyController extends Controller
         ]);
     }
 
-    function store(Request $request){
+    function storeProperty(Request $request){
         $validator = validator($request->all(), [
 
         ]);
@@ -99,6 +99,12 @@ class NewPropertyController extends Controller
             ]);
         }
 
+        // if ($request->file('other_image')->hasFile())
+         //check if other images array is empty
+        //  if (Request::hasFile('other_image'))
+
+        //  {
+
         $result = $this->uploadOtherImages($property, $request->file('other_image'));
         if(!is_bool($result)){
             DB::rollBack();
@@ -108,6 +114,8 @@ class NewPropertyController extends Controller
                 'exception' => $result->getMessage()
             ]);
         }
+    
+              
 
         // Features
         $result = $this->saveFeatures($property, $request->post('features'));
@@ -149,6 +157,7 @@ class NewPropertyController extends Controller
      * @param UploadedFile[] $files
      */
     function uploadOtherImages($property, $files){
+       
         try{
             foreach($files as $file){
                 $property->images()->create([

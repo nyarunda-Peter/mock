@@ -16,7 +16,10 @@ class SignupController extends Controller
 
         $validator = validator($data, [
             'name' => 'required',
+            'fname'=> 'required',
+            'lname' => 'required',
             'email' => 'required|email|unique:users',
+            'phone_number' => 'required|unique:users',
             'password' => ['required'],
         ]);
 
@@ -28,7 +31,10 @@ class SignupController extends Controller
         // Create account
         $user = User::create([
             'name' => $request->post('name'),
+            'fname' => $request->post('fname'),
+            'lname' => $request->post('lname'),
             'email' => $request->post('email'),
+            'phone_number' => $request->post('phone_number'),
             'password' => Hash::make($request->post('password')),
         ]);
 

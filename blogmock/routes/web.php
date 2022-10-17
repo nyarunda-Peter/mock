@@ -25,27 +25,37 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
+// Home page Route
 Route::get('/', [PropertyController::class, 'index'])->name('home');
 
+//SignUp and Login Routes
 Route::view('login', 'auth.login')->name('login')->middleware(['guest']);
 Route::post('login', [LoginController::class, 'index'])->name('login')->middleware(['guest']);
 
 Route::view('signup', 'auth.signup')->name('signup');
 Route::post('signup', [SignupController::class, 'index'])->name('signup');
 
+//Property Submission routes
 Route::middleware(['auth'])
 ->group(function(){
 
     Route::get('Add-Property', [NewPropertyController::class, 'stepOne'])->name('Add-Property');
     Route::post('Add-Property', [NewPropertyController::class, 'stepTwo'])->name('Add-Property');
-    Route::post('Add-Property/store', [NewPropertyController::class, 'store'])->name('StoreProperty');
+    Route::post('Add-Property/store', [NewPropertyController::class, 'storeProperty'])->name('StoreProperty');
     
 });
 
+//Property Viewing Routes
 Route::get('property/{post:slug}',[PropertyController::class, 'showPost'] )->name('view_single_property');
 
-Route::get('profile', [ PropertyModsController::class, 'SelectProperty'])->middleware(['auth'])->name('profile');
+//Property Editing Routes
+Route::get('profile', [ PropertyModsController::class, 'SelectProfile'])->middleware(['auth'])->name('profile');
 
+Route::get('property-view', [ PropertyModsController::class, 'SelectProperty'])->name('property-view');
+
+// Route::get('property-view/{post:slug}',[PropertyController::class, 'showPost'] )->name('edit_single_property');
+
+//Category Filtering Routes
 Route::get('categories/{category:slug}', function (Category $category){
 
     return view('property.index', [
@@ -56,6 +66,7 @@ Route::get('categories/{category:slug}', function (Category $category){
     ]);
 });
 
+// Type Filtering Routes
 Route::get('types/{type:slug}', function (Type $type){
 
     return view('property.index', [

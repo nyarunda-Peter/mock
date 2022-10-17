@@ -10,9 +10,18 @@
             @enderror
 
             <div>
-                <label for="">Name</label>
-                <input type="name" name="name" required>
-                @error('name')
+                <label for="">First Name</label>
+                <input type="name" name="fname" required>
+                @error('fname')
+                <div>{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div>
+                <label for="">Last Name</label>
+                <input type="name" name="lname" required>
+                {{-- is calling @error like this correct? --}}
+                @error('lname')
                 <div>{{ $message }}</div>
                 @enderror
             </div>
@@ -26,9 +35,26 @@
             </div>
 
             <div>
+                {{-- is this correct? --}}
+                <label for="">Phone Number</label>
+                <input type="email" name="phone" required>
+                @error('phone')
+                <div>{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div>
                 <label for="">Password</label>
                 <input type="password" name="password" required>
                 @error('password')
+                <div>{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div>
+                <label for="">Confirm Password</label>
+                <input type="password" name="cpassword" required>
+                @error('cpassword')
                 <div>{{ $message }}</div>
                 @enderror
             </div>
