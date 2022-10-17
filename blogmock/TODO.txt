@@ -1,15 +1,21 @@
- Allow null submission to other images
- Allow null submission of features -> plot || Add options for plot features [Road Infrastructure, Water services, Electricity Services]
- Retrieve existing Property Details for editing - (property.showProperty)
- Editing overview values
- Showcasing previously added images [Homepage, Specific property page, Edit Page]
- Pop-up Alerts for removing property visibility
- Saving modified data to be compared to existing data 
- Process of removing/deleting a property -> <Require :Visibility status off for >60 days> -> Provide reason for deletion [can be a select option element with common reasons but also a textarea for any unrepresented option]-> Approval
- Notification panel -> Further Details of alerts -> Storage of alerts
- Alerts for new property submission || changes to property to Moderator && propertyOwner(Pending approval)
- Moderator approval of properties
- Alerts for approval response from Moderator
+Property Management
+    Allow null submission for other images
+    Allow null submission of features -> plot || Add options for plot features [Road Infrastructure, Water services, Electricity Services]
+    app.css messing up the display
+
+    Retrieve existing Property Details for editing - (property.showProperty view)
+    Editing overview values
+    Showcasing previously added images [Homepage, Specific property page, Edit Page]
+    Pop-up Alerts for removing property visibility
+    Saving modified data to be compared to existing data 
+
+    Process of removing/deleting a property -> <Require :Visibility status off for >60 days> -> Provide reason for deletion [can be a select option element with common reasons but also a textarea for any unrepresented option]-> Approval
+    
+    Notification panel -> Further Details of alerts -> Storage of alerts
+
+    Moderator approval of properties    
+    Alerts for new property submission || changes to property to Moderator && propertyOwner(Pending approval)
+    Alerts for approval response from Moderator
 
 
 Property Approval  
@@ -20,8 +26,9 @@ Property Approval
 
 
 Users
-    Provide more information on the user [fname,lname] 
-    Verify users' identity via email||number -> Unique OTP key, Unique Link {Activation of account -> Avoiding ghost users}
+    Provide more information on the user [fname,lname, phone number, [ check password === confirmpassword ]] -> check auth.signup view
+    Adding extra info to users table
+    Verify users' identity via email||number -> Unique OTP key, Unique Link {Activation of account :- Avoiding ghost users}
     Restricting Login Attempts
     Password Resets
 
