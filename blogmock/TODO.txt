@@ -1,0 +1,28 @@
+ Allow null submission to other images
+ Allow null submission of features -> plot || Add options for plot features [Road Infrastructure, Water services, Electricity Services]
+ Retrieve existing Property Details for editing - (property.showProperty)
+ Editing overview values
+ Showcasing previously added images [Homepage, Specific property page, Edit Page]
+ Pop-up Alerts for removing property visibility
+ Saving modified data to be compared to existing data 
+ Process of removing/deleting a property -> <Require :Visibility status off for >60 days> -> Provide reason for deletion [can be a select option element with common reasons but also a textarea for any unrepresented option]-> Approval
+ Notification panel -> Further Details of alerts -> Storage of alerts
+ Alerts for new property submission || changes to property to Moderator && propertyOwner(Pending approval)
+ Moderator approval of properties
+ Alerts for approval response from Moderator
+
+
+Property Approval  
+    Receive Notifications
+    View Notification Details
+    Evaluate Property -> Notification details to allow viewing of Property details
+    Offer response options to the owner [Advise on why property was denied approval [can be a select option element with common reasons but also a textarea for any unrepresented option]]
+
+
+Users
+    Provide more information on the user [fname,lname] 
+    Verify users' identity via email||number -> Unique OTP key, Unique Link {Activation of account -> Avoiding ghost users}
+    Restricting Login Attempts
+    Password Resets
+
+Trace Log : For administrative roles [audit purposes]
